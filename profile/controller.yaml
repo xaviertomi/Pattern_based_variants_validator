@@ -1,0 +1,7 @@
+account: dedicated-cpu@cirad-long
+partition: cpu-dedicated
+cpus: 2
+mem_mb: 4000
+time: 2-00:00:00
+mail_user: null
+mail_type: [FAIL, END]

@@ -1,0 +1,131 @@
+executor: cluster-generic
+cluster-generic-submit-cmd: >-
+  python3 profile/slurm.py submit
+  --partition {resources.partition} --account {resources.account}
+  --cpus-per-task {threads} --mem {resources.mem_mb} --time {resources.time}
+  --job-name motif-{rule} --output logs/jobs/{rule}-%j.out --error logs/jobs/{rule}-%j.err
+cluster-generic-status-cmd: "python3 profile/slurm.py status"
+cluster-generic-cancel-cmd: "python3 profile/slurm.py cancel"
+default-resources:
+  partition: "'cpu-dedicated'"
+  account: "'dedicated-cpu@cirad-long'"
+  mem_mb: 4000
+  time: "'01:00:00'"
+  disk_mb: 10000
+local-cores: 2
+jobs: 60
+cores: 60
+max-jobs-per-timespan: "20/1s"
+max-status-checks-per-second: 1
+latency-wait: 120
+retries: 0
+rerun-incomplete: true
+printshellcmds: true
+scheduler: greedy
+set-resources:
+  streme:
+    mem_mb: 64000
+    time: "'12:00:00'"
+    disk_mb: 20000
+  fimo_pacbio:
+    mem_mb: 4000
+    time: "'04:00:00'"
+    disk_mb: 30000
+  fimo_corresponding:
+    mem_mb: 4000
+    time: "'04:00:00'"
+    disk_mb: 30000
+  fimo_representative:
+    mem_mb: 4000
+    time: "'04:00:00'"
+    disk_mb: 30000
+  fimo_other:
+    mem_mb: 4000
+    time: "'04:00:00'"
+    disk_mb: 30000
+  summarize_pacbio:
+    mem_mb: 8000
+    time: "'02:00:00'"
+    disk_mb: 60000
+  summarize_transfer:
+    mem_mb: 8000
+    time: "'02:00:00'"
+    disk_mb: 60000
+  summarize_representative:
+    mem_mb: 8000
+    time: "'02:00:00'"
+    disk_mb: 60000
+  summarize_family_unions:
+    mem_mb: 8000
+    time: "'04:00:00'"
+    disk_mb: 60000
+  validate_representatives:
+    mem_mb: 8000
+    time: "'04:00:00'"
+    disk_mb: 60000
+  annotate_genotypes:
+    mem_mb: 8000
+    time: "'04:00:00'"
+    disk_mb: 60000
+  tomtom:
+    mem_mb: 8000
+    time: "'04:00:00'"
+  make_families:
+    mem_mb: 8000
+    time: "'04:00:00'"
+  rank_families:
+    mem_mb: 8000
+    time: "'04:00:00'"
+  freeze:
+    mem_mb: 8000
+    time: "'04:00:00'"
+  render_reports:
+    mem_mb: 4000
+    time: "'01:00:00'"
+    disk_mb: 5000
+  write_effective_config: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  fingerprint_selection: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  fingerprint_application: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  preflight_meme: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  preflight_python: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  tool_preflight_gate: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  stage_reference: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  index_reference: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  stage_shared_vcf: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  validate_shared_headers: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  prepare_selected_records: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  prepare_selected_contexts: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  make_folds: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  validate_fold_partition: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  make_seeds: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  global_preparation_gate: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  make_train_test: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  shuffle_train: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  shuffle_test: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  make_scoring_background: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  parse_models: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  select_candidates: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  select_transferable: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  pool_models: {mem_mb: 8000, time: "'04:00:00'", disk_mb: 10000}
+  prepare_representatives: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  prepare_other_manifest: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  prepare_other_records: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  prepare_other_sample: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  shard_other_windows: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  report_complete: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  stage_other_vcf: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  plan_other_records: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  query_other_records: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  plan_other_contexts: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  extract_other_contexts: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  capture_reference_index: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  capture_shared_vcf: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  selected_exact_sample: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  query_selected_records: {mem_mb: 4000, time: "'02:00:00'", disk_mb: 30000}
+  plan_selected_contexts: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  extract_selected_contexts: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  preflight_fixtures: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  preflight_bcftools_tools: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  preflight_samtools_tools: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  preflight_r_tools: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
+  capture_worker_preflight: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}

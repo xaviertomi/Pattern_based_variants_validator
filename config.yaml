@@ -1,0 +1,56 @@
+reference_fasta: "/PATH/TO/reference.fasta"
+output_dir: "results/motif_pipeline"
+scratch_dir: "/PATH/TO/SCRATCH"
+pacbio_vcf: "/PATH/TO/pacbio_multisample.vcf.gz"
+illumina_vcf: "/PATH/TO/illumina_corresponding_multisample.vcf.gz"
+folds:
+  grouping:
+    enabled: true
+    regex: '^chr([0-9]+)(?:_|$)'
+    unmatched_policy: "error"
+pacbio_samples: ["PB-library-A", "PB-library-B"]
+illumina_corresponding:
+  PB-library-A: ["IL-library-A-1", "IL-library-A-2", "IL-library-A-3", "IL-library-A-4", "IL-library-A-5", "IL-library-A-6"]
+  PB-library-B: ["IL-library-B-1", "IL-library-B-2", "IL-library-B-3", "IL-library-B-4", "IL-library-B-5"]
+other_illumina: "/PATH/TO/other_illumina.vcf.gz"
+sample_metadata:
+  pacbio: {}
+  illumina: {}
+  other_illumina: {}
+pilot:
+  pacbio_sample: "PB-library-A"
+  rotation: 1
+analysis:
+  flank_bp: 50
+  center_radius_bp: 10
+  rotations: [1, 2, 3, 4, 5]
+  shuffle_kmer: 3
+  base_seed: 42
+  seed_overrides: []
+  streme_min_width: 6
+  streme_max_width: 15
+  streme_total_length: 10000000
+  streme_e_max: 0.05
+  fimo_p_threshold: 0.0001
+selection:
+  pacbio_coverage_ratio_min: 1.0
+  illumina_coverage_ratio_min: 1.0
+  require_all_pacbio_clones: true
+  corresponding_dataset_support_fraction: 1.0
+  min_supported_rotations: 3  # Proposed unvalidated default, configurable 1-5.
+  require_central_enrichment: false
+  family_matching: {method: "tomtom", q_max: 0.05, min_overlap_bp: 6}
+vcf_outputs:
+  consensus_fraction: 0.75
+  groups: {}
+execution:
+  use_containers: true
+  image_cache: "/PATH/TO/SHARED_IMAGE_CACHE"
+  extra_bind_paths: []
+  scan_windows_per_shard: 50000
+container:
+  bcftools: "docker://quay.io/biocontainers/bcftools@sha256:8cf74dd0738e0a86fa3f8dc598596e8160e7e4e71380ab6db943a3b53f993869"
+  samtools: "docker://quay.io/biocontainers/samtools@sha256:23cda33a3a42125872766df9aaf1d2db67cdb8c85314b793465188435af31ba6"
+  meme: "docker://memesuite/memesuite@sha256:1edcb504a175cf07f1607d1434b691dd0902e320af3b3b3e507a6b800b0cceb5"
+  python: "docker://python@sha256:97983fa8cc88343512862c62307159a82261c3528dc025f79e5a3f7af43e50b4"
+  r: "docker://rocker/r-ver@sha256:55be3ae296dd21b6f2da705be44804ba7eb2ab2233a7050730506d7e64e8feda"
