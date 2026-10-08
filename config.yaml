@@ -22,17 +22,17 @@ pilot:
   pacbio_sample: "PB-library-A"
   rotation: 1
 analysis:
-  flank_bp: 50
-  center_radius_bp: 10
-  rotations: [1, 2, 3, 4, 5]
-  shuffle_kmer: 3
-  base_seed: 42
-  seed_overrides: []
-  streme_min_width: 6
-  streme_max_width: 15
-  streme_total_length: 10000000
-  streme_e_max: 0.05
-  fimo_p_threshold: 0.0001
+  flank_bp: 50  # Bases on each side of an ALT locus; context windows are 2 * flank + 1 bp.
+  center_radius_bp: 10  # Radius around the variant center for the optional central-enrichment check.
+  rotations: [1, 2, 3, 4, 5]  # Fixed five-fold scheme: each fold is held out once.
+  shuffle_kmer: 3  # K-mer size preserved when generating shuffled control sequences.
+  base_seed: 42  # Root seed for deterministic per-sample, rotation, and role seeds.
+  seed_overrides: []  # Optional seeds keyed by platform, sample, rotation, and role.
+  streme_min_width: 6  # Smallest motif width STREME may discover, in bases.
+  streme_max_width: 15  # Largest motif width STREME may discover, in bases.
+  streme_total_length: 10000000  # Total input length passed to STREME for significance estimates.
+  streme_e_max: 0.05  # Initial PacBio candidates require an STREME E-value below this threshold.
+  fimo_p_threshold: 0.0001  # Maximum FIMO occurrence p-value admitted as a hit.
 selection:
   # PacBio candidates are checked against their mapped Illumina samples before family matching.
   # Support requires enrichment over controls; a motif hit alone is not enough.
