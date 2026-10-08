@@ -8,6 +8,7 @@ folds:
     enabled: true
     regex: '^chr([0-9]+)(?:_|$)'
     unmatched_policy: "error"
+# Each PacBio sample defines a selection group; map its corresponding Illumina samples below.
 pacbio_samples: ["PB-library-A", "PB-library-B"]
 illumina_corresponding:
   PB-library-A: ["IL-library-A-1", "IL-library-A-2", "IL-library-A-3", "IL-library-A-4", "IL-library-A-5", "IL-library-A-6"]
@@ -33,12 +34,16 @@ analysis:
   streme_e_max: 0.05
   fimo_p_threshold: 0.0001
 selection:
+  # PacBio candidates are checked against their mapped Illumina samples before family matching.
+  # Support requires enrichment over controls; a motif hit alone is not enough.
   pacbio_coverage_ratio_min: 1.0
   illumina_coverage_ratio_min: 1.0
-  require_all_pacbio_clones: true
-  corresponding_dataset_support_fraction: 1.0
+  require_all_pacbio_clones: true  # Require every configured group for family and representative validation.
+  corresponding_dataset_support_fraction: 1.0  # 1.0 requires all mapped Illumina samples in each group.
   min_supported_rotations: 3  # Proposed unvalidated default, configurable 1-5.
+  # Family stability uses this rotation count; exact representatives are tested on their source rotation.
   require_central_enrichment: false
+  # Tomtom groups similar matrices; exact representative validation is a separate gate.
   family_matching: {method: "tomtom", q_max: 0.05, min_overlap_bp: 6}
 vcf_outputs:
   consensus_fraction: 0.75
