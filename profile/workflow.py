@@ -257,11 +257,16 @@ def run(mode, args):
     application_targets = {'annotate_other', 'annotate_corresponding', 'export_promising',
                            'consensus_groups', 'vcf_deliverables'}
     if mode in ('dry', 'dag', 'unlock'):
-        if targets and all(target in application_targets for target in targets):
-            if '--config' not in base:
-                base.append('--config')
-            base.append('workflow_scope=application')
-        return
+           if targets and all(target in application_targets for target in targets):
+               if '--config' not in base:
+                   base.append('--config')
+               base.append('workflow_scope=application')
+           flag = {'dry': '--dry-run', 'dag': '--dag', 'unlock': '--unlock'}[mode]
+           execute([
+               'snakemake', *rest, *base,
+               '--profile', 'none', '--executor', 'local', '--cores', '1', flag
+           ])
+           return
     if not os.environ.get('SLURM_JOB_ID') and mode != 'controller':
         c = load_yaml(ROOT / 'profile' / 'controller.yaml')
         (ROOT / 'logs' / 'controller').mkdir(parents=True, exist_ok=True)

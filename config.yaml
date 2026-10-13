@@ -1,51 +1,289 @@
-reference_fasta: "/PATH/TO/reference.fasta"
-output_dir: "results/motif_pipeline"
-scratch_dir: "/PATH/TO/SCRATCH"
-pacbio_vcf: "/PATH/TO/pacbio_multisample.vcf.gz"
-illumina_vcf: "/PATH/TO/illumina_corresponding_multisample.vcf.gz"
+reference_fasta: "/storage/replicated/cirad_users/tominisecx/Merlot_from_shortR/index_bwa_mem2/Merlot_concatenated_homozygotemasked.fasta"
+output_dir: "/scratch/users/tominisecx/projet_merlot_from_shortR/Patern_recognitions/Pipeline_output/Pilot"
+scratch_dir: "/scratch/users/tominisecx/projet_merlot_from_shortR/Patern_recognitions/Pipeline_output/Pilot"
+pacbio_vcf: "/storage/replicated/cirad/projects/DAAV/2026_div_intra_Merlot_Xavier_TV/PacBio_LR/vcf/concat.vcf.gz"
+#illumina_vcf: "/PATH/TO/illumina_corresponding_multisample.vcf.gz"
+illumina_vcf: "/scratch/users/tominisecx/projet_merlot_from_shortR/Patern_recognitions/vcf/illumina_C008+C057.vcf.gz"
 folds:
   grouping:
     enabled: true
     regex: '^chr([0-9]+)(?:_|$)'
     unmatched_policy: "error"
-pacbio_samples: ["PB-library-A", "PB-library-B"]
+#pacbio_samples: ["PB-library-A", "PB-library-B"]
+pacbio_samples: ["hifi-Merlot-C008", "hifi-Merlot-C057"]
 illumina_corresponding:
-  PB-library-A: ["IL-library-A-1", "IL-library-A-2", "IL-library-A-3", "IL-library-A-4", "IL-library-A-5", "IL-library-A-6"]
-  PB-library-B: ["IL-library-B-1", "IL-library-B-2", "IL-library-B-3", "IL-library-B-4", "IL-library-B-5"]
-other_illumina: "/PATH/TO/other_illumina.vcf.gz"
+# PB-library-A: ["IL-library-A-1", "IL-library-A-2", "IL-library-A-3", "IL-library-A-4", "IL-library-A-5", "IL-library-A-6"]
+  hifi-Merlot-C008: ["C008", "Club9_C008_G1_R1", "Club9_C008_G1_R2", "Club9_C008_G2_R1", "Club9_C008_G2_R2", "Club9_C008_G3"]
+  hifi-Merlot-C057: ["C057", "Club9_C057_G1_R1", "Club9_C057_G1_R2", "Club9_C057_G2_R1", "Club9_C057_G2_R2", "Club9_C057_G3"]
+#other_illumina: "/PATH/TO/other_illumina.vcf.gz"
+other_illumina: "/scratch/users/tominisecx/projet_merlot_from_shortR/Patern_recognitions/Pipeline_output/no_C008_C057.vcf.gz"
 sample_metadata:
-  pacbio: {}
-  illumina: {}
-  other_illumina: {}
+  pacbio:
+    hifi-Merlot-C008: {clone_id: "C008"}
+    hifi-Merlot-C057: {clone_id: "C057"}
+  illumina:
+    C008: {clone_id: "C008"}
+    Club9_C008_G1_R1: {clone_id: "C008"}
+    Club9_C008_G1_R2: {clone_id: "C008"}
+    Club9_C008_G2_R1: {clone_id: "C008"}
+    Club9_C008_G2_R2: {clone_id: "C008"}
+    Club9_C008_G3: {clone_id: "C008"}
+    C057: {clone_id: "C057"}
+    Club9_C057_G1_R1: {clone_id: "C057"}
+    Club9_C057_G1_R2: {clone_id: "C057"}
+    Club9_C057_G2_R1: {clone_id: "C057"}
+    Club9_C057_G2_R2: {clone_id: "C057"}
+    Club9_C057_G3: {clone_id: "C057"}
+  other_illumina:
+    "0Mtp167": {clone_id: "0Mtp167"}
+    "181B": {clone_id: "181B"}
+    "182B": {clone_id: "182B"}
+    "184B": {clone_id: "184B"}
+    "314B": {clone_id: "314B"}
+    "342B": {clone_id: "342B"}
+    "343B": {clone_id: "343B"}
+    "345B": {clone_id: "345B"}
+    "346B": {clone_id: "346B"}
+    "347B": {clone_id: "347B"}
+    "348B": {clone_id: "348B"}
+    "349B": {clone_id: "349B"}
+    "519B": {clone_id: "519B"}
+    "C001": {clone_id: "C001"}
+    "C002": {clone_id: "C002"}
+    "C003": {clone_id: "C003"}
+    "C004": {clone_id: "C004"}
+    "C005": {clone_id: "C005"}
+    "C006": {clone_id: "C006"}
+    "C007": {clone_id: "C007"}
+    "C009": {clone_id: "C009"}
+    "C011": {clone_id: "C011"}
+    "C012": {clone_id: "C012"}
+    "C013": {clone_id: "C013"}
+    "C014": {clone_id: "C014"}
+    "C015": {clone_id: "C015"}
+    "C016": {clone_id: "C016"}
+    "C017": {clone_id: "C017"}
+    "C018": {clone_id: "C018"}
+    "C019": {clone_id: "C019"}
+    "C020": {clone_id: "C020"}
+    "C021": {clone_id: "C021"}
+    "C022": {clone_id: "C022"}
+    "C023": {clone_id: "C023"}
+    "C024": {clone_id: "C024"}
+    "C025": {clone_id: "C025"}
+    "C026": {clone_id: "C026"}
+    "C027": {clone_id: "C027"}
+    "C028": {clone_id: "C028"}
+    "C029": {clone_id: "C029"}
+    "C030": {clone_id: "C030"}
+    "C031": {clone_id: "C031"}
+    "C032": {clone_id: "C032"}
+    "C035": {clone_id: "C035"}
+    "C036": {clone_id: "C036"}
+    "C037": {clone_id: "C037"}
+    "C038": {clone_id: "C038"}
+    "C039": {clone_id: "C039"}
+    "C040": {clone_id: "C040"}
+    "C041": {clone_id: "C041"}
+    "C042": {clone_id: "C042"}
+    "C043": {clone_id: "C043"}
+    "C044": {clone_id: "C044"}
+    "C045": {clone_id: "C045"}
+    "C046": {clone_id: "C046"}
+    "C047": {clone_id: "C047"}
+    "C048": {clone_id: "C048"}
+    "C049": {clone_id: "C049"}
+    "C050": {clone_id: "C050"}
+    "C051": {clone_id: "C051"}
+    "C052": {clone_id: "C052"}
+    "C053": {clone_id: "C053"}
+    "C054": {clone_id: "C054"}
+    "C055": {clone_id: "C055"}
+    "C056": {clone_id: "C056"}
+    "C058": {clone_id: "C058"}
+    "C182": {clone_id: "C182"}
+    "C343": {clone_id: "C343"}
+    "C347": {clone_id: "C347"}
+    "Club9_1_1_1_1_10_1": {clone_id: "Club9_1_1_1_1_10_1"}
+    "Club9_1_1_1_1_6_1": {clone_id: "Club9_1_1_1_1_6_1"}
+    "Club9_1_1_1_1_7_1": {clone_id: "Club9_1_1_1_1_7_1"}
+    "Club9_1_1_1_29_7_1": {clone_id: "Club9_1_1_1_29_7_1"}
+    "Club9_1_1_1_2_10_2": {clone_id: "Club9_1_1_1_2_10_2"}
+    "Club9_1_1_1_2_5_1": {clone_id: "Club9_1_1_1_2_5_1"}
+    "Club9_1_1_1_2_6_1": {clone_id: "Club9_1_1_1_2_6_1"}
+    "Club9_1_1_1_2_7_1": {clone_id: "Club9_1_1_1_2_7_1"}
+    "Club9_1_1_1_2_8_1": {clone_id: "Club9_1_1_1_2_8_1"}
+    "Club9_1_1_1_2_9_1": {clone_id: "Club9_1_1_1_2_9_1"}
+    "Club9_1_1_1_30_6_1": {clone_id: "Club9_1_1_1_30_6_1"}
+    "Club9_1_1_1_31_8_1": {clone_id: "Club9_1_1_1_31_8_1"}
+    "Club9_1_1_1_3_10_1": {clone_id: "Club9_1_1_1_3_10_1"}
+    "Club9_1_1_1_3_7_1": {clone_id: "Club9_1_1_1_3_7_1"}
+    "Club9_1_1_1_6_5_1": {clone_id: "Club9_1_1_1_6_5_1"}
+    "Club9_1_1_1_6_7_1": {clone_id: "Club9_1_1_1_6_7_1"}
+    "Club9_1_1_3_25_11_2": {clone_id: "Club9_1_1_3_25_11_2"}
+    "Club9_1_1_3_26_7_1": {clone_id: "Club9_1_1_3_26_7_1"}
+    "Club9_2_1_3_10_6_6": {clone_id: "Club9_2_1_3_10_6_6"}
+    "Club9_2_1_3_11_4_6": {clone_id: "Club9_2_1_3_11_4_6"}
+    "Club9_2_1_3_11_9_6": {clone_id: "Club9_2_1_3_11_9_6"}
+    "Club9_2_1_3_12_4_6": {clone_id: "Club9_2_1_3_12_4_6"}
+    "Club9_2_1_3_13_4_6": {clone_id: "Club9_2_1_3_13_4_6"}
+    "Club9_2_1_3_14_5_3": {clone_id: "Club9_2_1_3_14_5_3"}
+    "Club9_2_1_3_15_5_6": {clone_id: "Club9_2_1_3_15_5_6"}
+    "Club9_2_1_3_16_8_5": {clone_id: "Club9_2_1_3_16_8_5"}
+    "Club9_2_1_3_1_12_5": {clone_id: "Club9_2_1_3_1_12_5"}
+    "Club9_2_1_3_1_4_5": {clone_id: "Club9_2_1_3_1_4_5"}
+    "Club9_2_1_3_2_12_5": {clone_id: "Club9_2_1_3_2_12_5"}
+    "Club9_2_1_3_2_4_6": {clone_id: "Club9_2_1_3_2_4_6"}
+    "Club9_2_1_3_3_12_5": {clone_id: "Club9_2_1_3_3_12_5"}
+    "Club9_2_1_3_3_4_6": {clone_id: "Club9_2_1_3_3_4_6"}
+    "Club9_2_1_3_4_12_6": {clone_id: "Club9_2_1_3_4_12_6"}
+    "Club9_2_1_3_4_4_6": {clone_id: "Club9_2_1_3_4_4_6"}
+    "Club9_2_1_3_5_12_6": {clone_id: "Club9_2_1_3_5_12_6"}
+    "Club9_2_1_3_5_4_6": {clone_id: "Club9_2_1_3_5_4_6"}
+    "Club9_2_1_3_6_12_6": {clone_id: "Club9_2_1_3_6_12_6"}
+    "Club9_2_1_3_6_4_6": {clone_id: "Club9_2_1_3_6_4_6"}
+    "Club9_2_1_3_7_11_6": {clone_id: "Club9_2_1_3_7_11_6"}
+    "Club9_2_1_3_7_4_5": {clone_id: "Club9_2_1_3_7_4_5"}
+    "Club9_2_1_3_8_12_6": {clone_id: "Club9_2_1_3_8_12_6"}
+    "Club9_2_1_3_8_4_6": {clone_id: "Club9_2_1_3_8_4_6"}
+    "Club9_2_1_3_9_12_6": {clone_id: "Club9_2_1_3_9_12_6"}
+    "Club9_2_1_3_9_4_6": {clone_id: "Club9_2_1_3_9_4_6"}
+    "Club9_3_1_1_10_5_3": {clone_id: "Club9_3_1_1_10_5_3"}
+    "Club9_3_1_1_11_5_2": {clone_id: "Club9_3_1_1_11_5_2"}
+    "Club9_3_1_1_12_5_3": {clone_id: "Club9_3_1_1_12_5_3"}
+    "Club9_3_1_1_13_5_2": {clone_id: "Club9_3_1_1_13_5_2"}
+    "Club9_3_1_1_14_4_6": {clone_id: "Club9_3_1_1_14_4_6"}
+    "Club9_3_1_1_15_4_5": {clone_id: "Club9_3_1_1_15_4_5"}
+    "Club9_3_1_1_16_4_5": {clone_id: "Club9_3_1_1_16_4_5"}
+    "Club9_3_1_1_17_4_6": {clone_id: "Club9_3_1_1_17_4_6"}
+    "Club9_3_1_1_18_5_6": {clone_id: "Club9_3_1_1_18_5_6"}
+    "Club9_3_1_1_19_5_5": {clone_id: "Club9_3_1_1_19_5_5"}
+    "Club9_4_1_1_2108": {clone_id: "Club9_4_1_1_2108"}
+    "Club9_4_1_1_2109": {clone_id: "Club9_4_1_1_2109"}
+    "Club9_4_1_1_2111": {clone_id: "Club9_4_1_1_2111"}
+    "Club9_4_1_1_2112": {clone_id: "Club9_4_1_1_2112"}
+    "Club9_4_1_1_2113": {clone_id: "Club9_4_1_1_2113"}
+    "Club9_4_1_1_2114": {clone_id: "Club9_4_1_1_2114"}
+    "Club9_4_1_1_2115": {clone_id: "Club9_4_1_1_2115"}
+    "Club9_4_1_1_2116": {clone_id: "Club9_4_1_1_2116"}
+    "Club9_4_1_1_2117": {clone_id: "Club9_4_1_1_2117"}
+    "Club9_4_1_1_2118": {clone_id: "Club9_4_1_1_2118"}
+    "Club9_4_1_1_2132": {clone_id: "Club9_4_1_1_2132"}
+    "Club9_4_1_1_2134": {clone_id: "Club9_4_1_1_2134"}
+    "Club9_4_1_1_2135": {clone_id: "Club9_4_1_1_2135"}
+    "Club9_4_1_1_2211": {clone_id: "Club9_4_1_1_2211"}
+    "Club9_4_1_1_2212": {clone_id: "Club9_4_1_1_2212"}
+    "Club9_4_1_1_2307": {clone_id: "Club9_4_1_1_2307"}
+    "Club9_4_1_1_2308": {clone_id: "Club9_4_1_1_2308"}
+    "Club9_4_1_1_2309": {clone_id: "Club9_4_1_1_2309"}
+    "Club9_4_1_1_2310": {clone_id: "Club9_4_1_1_2310"}
+    "Club9_4_1_1_2311": {clone_id: "Club9_4_1_1_2311"}
+    "Club9_4_1_1_2312": {clone_id: "Club9_4_1_1_2312"}
+    "Club9_4_1_1_2313": {clone_id: "Club9_4_1_1_2313"}
+    "Club9_4_1_1_2314": {clone_id: "Club9_4_1_1_2314"}
+    "Club9_4_1_1_2426": {clone_id: "Club9_4_1_1_2426"}
+    "Club9_4_1_1_2429": {clone_id: "Club9_4_1_1_2429"}
+    "Club9_4_1_1_2430": {clone_id: "Club9_4_1_1_2430"}
+    "Club9_4_1_1_2431": {clone_id: "Club9_4_1_1_2431"}
+    "Club9_4_1_1_2432": {clone_id: "Club9_4_1_1_2432"}
+    "Club9_5_1_2_10_4_2": {clone_id: "Club9_5_1_2_10_4_2"}
+    "Club9_5_1_2_10_6_2": {clone_id: "Club9_5_1_2_10_6_2"}
+    "Club9_5_1_2_14_4_4": {clone_id: "Club9_5_1_2_14_4_4"}
+    "Club9_5_1_2_22_4_4": {clone_id: "Club9_5_1_2_22_4_4"}
+    "Club9_5_1_2_2_2_1": {clone_id: "Club9_5_1_2_2_2_1"}
+    "Club9_5_1_2_9_3_3": {clone_id: "Club9_5_1_2_9_3_3"}
+    "Club9_5_1_3_18_1_3": {clone_id: "Club9_5_1_3_18_1_3"}
+    "Club9_5_1_3_25_1_2": {clone_id: "Club9_5_1_3_25_1_2"}
+    "Club9_5_1_3_28_7_1": {clone_id: "Club9_5_1_3_28_7_1"}
+    "Club9_5_1_3_36_10_1": {clone_id: "Club9_5_1_3_36_10_1"}
+    "Club9_5_1_3_37_9_5": {clone_id: "Club9_5_1_3_37_9_5"}
+    "Club9_5_1_3_3_4_4": {clone_id: "Club9_5_1_3_3_4_4"}
+    "Club9_5_1_3_46_5_3": {clone_id: "Club9_5_1_3_46_5_3"}
+    "Club9_5_1_3_49_X_X": {clone_id: "Club9_5_1_3_49_X_X"}
+    "Club9_5_1_3_51_9_5": {clone_id: "Club9_5_1_3_51_9_5"}
+    "Club9_5_1_4_32_9_2": {clone_id: "Club9_5_1_4_32_9_2"}
+    "Club9_5_1_4_65_3_4": {clone_id: "Club9_5_1_4_65_3_4"}
+    "Club9_5_1_4_70_5_3": {clone_id: "Club9_5_1_4_70_5_3"}
+    "Club9_5_1_4_74_6_6": {clone_id: "Club9_5_1_4_74_6_6"}
+    "Club9_5_1_5_11_8_2": {clone_id: "Club9_5_1_5_11_8_2"}
+    "Club9_5_1_5_18_3_2": {clone_id: "Club9_5_1_5_18_3_2"}
+    "Club9_5_1_5_19_2_5": {clone_id: "Club9_5_1_5_19_2_5"}
+    "Club9_5_1_5_23_1_2": {clone_id: "Club9_5_1_5_23_1_2"}
+    "Club9_5_1_5_24_X_X": {clone_id: "Club9_5_1_5_24_X_X"}
+    "Club9_5_1_5_25_4_4": {clone_id: "Club9_5_1_5_25_4_4"}
+    "Club9_5_1_5_43_5_2": {clone_id: "Club9_5_1_5_43_5_2"}
+    "Club9_5_1_5_61_2_2": {clone_id: "Club9_5_1_5_61_2_2"}
+    "Club9_5_1_5_61_9_3": {clone_id: "Club9_5_1_5_61_9_3"}
+    "Club9_5_1_5_74_8_3": {clone_id: "Club9_5_1_5_74_8_3"}
+    "Club9_5_1_5_75_8_3": {clone_id: "Club9_5_1_5_75_8_3"}
+    "Club9_C182_G3": {clone_id: "Club9_C182_G3"}
+    "Club9_C343_G3": {clone_id: "Club9_C343_G3"}
+    "Club9_C347_G3": {clone_id: "Club9_C347_G3"}
+    "Club9_LC_MN_26_17_1": {clone_id: "Club9_LC_MN_26_17_1"}
+    "Club9_LC_MN_26_20_1": {clone_id: "Club9_LC_MN_26_20_1"}
+    "Club9_LC_MN_26_28_1": {clone_id: "Club9_LC_MN_26_28_1"}
+    "Club9_LC_MN_26_29_1": {clone_id: "Club9_LC_MN_26_29_1"}
+    "Club9_LC_MN_26_32_1": {clone_id: "Club9_LC_MN_26_32_1"}
+    "Club9_LC_MN_26_34_1": {clone_id: "Club9_LC_MN_26_34_1"}
+    "Club9_LC_MN_88_21_2": {clone_id: "Club9_LC_MN_88_21_2"}
+    "Club9_LC_MN_88_22_1": {clone_id: "Club9_LC_MN_88_22_1"}
+    "Club9_LC_MN_88_35_2": {clone_id: "Club9_LC_MN_88_35_2"}
+    "Club9_LC_MN_88_39_1": {clone_id: "Club9_LC_MN_88_39_1"}
+    "Club9_M181": {clone_id: "Club9_M181"}
+    "Club9_M182": {clone_id: "Club9_M182"}
+    "Club9_M184": {clone_id: "Club9_M184"}
+    "Club9_M314": {clone_id: "Club9_M314"}
+    "Club9_M342": {clone_id: "Club9_M342"}
+    "Club9_M343": {clone_id: "Club9_M343"}
+    "Club9_M345": {clone_id: "Club9_M345"}
+    "Club9_M346": {clone_id: "Club9_M346"}
+    "Club9_M347": {clone_id: "Club9_M347"}
+    "Club9_M348": {clone_id: "Club9_M348"}
+    "Club9_M349": {clone_id: "Club9_M349"}
+    "Club9_M519": {clone_id: "Club9_M519"}
+    "Club9_PL_MN_12_21": {clone_id: "Club9_PL_MN_12_21"}
+    "Club9_PL_MN_12_8": {clone_id: "Club9_PL_MN_12_8"}
+    "Club9_PL_MN_23_14": {clone_id: "Club9_PL_MN_23_14"}
+    "Club9_PL_MN_23_16": {clone_id: "Club9_PL_MN_23_16"}
+    "Club9_PL_MN_23_21": {clone_id: "Club9_PL_MN_23_21"}
+    "Club9_PL_MN_3_12": {clone_id: "Club9_PL_MN_3_12"}
+    "Club9_PL_MN_3_8": {clone_id: "Club9_PL_MN_3_8"}
+    "Club9_PL_MN_4_17": {clone_id: "Club9_PL_MN_4_17"}
+    "Club9_PL_MN_5_15": {clone_id: "Club9_PL_MN_5_15"}
+    "Club9_PL_MN_7_3": {clone_id: "Club9_PL_MN_7_3"}
 pilot:
-  pacbio_sample: "PB-library-A"
+  pacbio_sample: "hifi-Merlot-C008"
   rotation: 1
 analysis:
-  flank_bp: 50
-  center_radius_bp: 10
-  rotations: [1, 2, 3, 4, 5]
-  shuffle_kmer: 3
-  base_seed: 42
-  seed_overrides: []
-  streme_min_width: 6
-  streme_max_width: 15
-  streme_total_length: 10000000
-  streme_e_max: 0.05
-  fimo_p_threshold: 0.0001
+  flank_bp: 50  # Bases on each side of an ALT locus; context windows are 2 * flank + 1 bp.
+  center_radius_bp: 10  # Radius around the variant center for the optional central-enrichment check.
+  rotations: [1, 2, 3, 4, 5]  # Fixed five-fold scheme: each fold is held out once.
+  shuffle_kmer: 3  # K-mer size preserved when generating shuffled control sequences.
+  base_seed: 42  # Root seed for deterministic per-sample, rotation, and role seeds.
+  seed_overrides: []  # Optional seeds keyed by platform, sample, rotation, and role.
+  streme_min_width: 6  # Smallest motif width STREME may discover, in bases.
+  streme_max_width: 15  # Largest motif width STREME may discover, in bases.
+  streme_total_length: 10000000  # Total input length passed to STREME for significance estimates.
+  streme_e_max: 0.05  # Initial PacBio candidates require an STREME E-value below this threshold.
+  fimo_p_threshold: 0.0001  # Maximum FIMO occurrence p-value admitted as a hit.
 selection:
+  # PacBio candidates are checked against their mapped Illumina samples before family matching.
+  # Support requires enrichment over controls; a motif hit alone is not enough.
   pacbio_coverage_ratio_min: 1.0
-  illumina_coverage_ratio_min: 1.0
-  require_all_pacbio_clones: true
-  corresponding_dataset_support_fraction: 1.0
+  illumina_coverage_ratio_min: 0.75
+  require_all_pacbio_clones: true  # Require every configured group for family and representative validation.
+  corresponding_dataset_support_fraction: 0.75  # 1.0 requires all mapped Illumina samples in each group.
   min_supported_rotations: 3  # Proposed unvalidated default, configurable 1-5.
+  # Family stability uses this rotation count; exact representatives are tested on their source rotation.
   require_central_enrichment: false
+  # Tomtom groups similar matrices; exact representative validation is a separate gate.
   family_matching: {method: "tomtom", q_max: 0.05, min_overlap_bp: 6}
 vcf_outputs:
   consensus_fraction: 0.75
   groups: {}
 execution:
   use_containers: true
-  image_cache: "/PATH/TO/SHARED_IMAGE_CACHE"
+  image_cache: "/storage/replicated/cirad_users/tominisecx/Merlot_from_shortR/Pattern_based_variants_validator/IMAGE_CACHE"
   extra_bind_paths: []
   scan_windows_per_shard: 50000
 container:

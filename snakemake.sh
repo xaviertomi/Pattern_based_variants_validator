@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-WORKFLOW_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+WORKFLOW_ROOT="${WORKFLOW_ROOT:-${SLURM_SUBMIT_DIR:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)}}"
+export WORKFLOW_ROOT
 MODE="${1:-dry}"
 if (($#)); then shift; fi
 case "$MODE" in

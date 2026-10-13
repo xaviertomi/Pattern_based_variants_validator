@@ -10,7 +10,7 @@ default-resources:
   partition: "'cpu-dedicated'"
   account: "'dedicated-cpu@cirad-long'"
   mem_mb: 4000
-  time: "'01:00:00'"
+  time: "'7-00:00:00'"
   disk_mb: 10000
 local-cores: 2
 jobs: 60
@@ -100,8 +100,8 @@ set-resources:
   make_seeds: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
   global_preparation_gate: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
   make_train_test: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
-  shuffle_train: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
-  shuffle_test: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
+  shuffle_train: {mem_mb: 10000, time: "'01:00:00'", disk_mb: 10000}
+  shuffle_test: {mem_mb: 10000, time: "'01:00:00'", disk_mb: 10000}
   make_scoring_background: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
   parse_models: {mem_mb: 4000, time: "'01:00:00'", disk_mb: 10000}
   select_candidates: {mem_mb: 2000, time: "'00:15:00'", disk_mb: 1000}
